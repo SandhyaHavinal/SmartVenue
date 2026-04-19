@@ -61,3 +61,20 @@ npm run dev
 *The Vite UI application will spin up successfully on port `5173`. Open `http://localhost:5173/` in your browser.*
 
 > **Testing Tip:** To witness the real-time logic properly, open **two separate tabs** on `localhost:5173`. Switch one to the "Ops Dashboard" header tab, and keep the other on the "Attendee" view to see instant push communications!
+
+---
+
+## ☁️ Cloud Deployment
+
+For permanent hosting, we recommend a dual-cloud strategy using specialized providers:
+
+### Backend (Render)
+The `server/` directory functions as an autonomous Node/Socket instance.
+1. Connect this repository to your [Render](https://render.com/) account.
+2. The included `render.yaml` infrastructure-as-code file will automatically detect the backend and deploy the `smartvenue-backend` service.
+
+### Frontend (Vercel)
+The Vite/React UI relies on a single environment variable to bridge to your new live backend.
+1. Connect this repository to your [Vercel](https://vercel.com/) account.
+2. Before deploying, add the `VITE_SOCKET_URL` environment variable containing your new Render backend URL (e.g., `https://smartvenue-backend.onrender.com`).
+3. Vercel will automatically configure routing based on the existing `vercel.json`.
